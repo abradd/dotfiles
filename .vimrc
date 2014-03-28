@@ -73,6 +73,9 @@ set incsearch
 set ignorecase
 set smartcase
 
+"NerdTree
+"https://github.com/scrooloose/nerdtree.git
+
 "setup pathogen to manage plugins
 execute pathogen#infect()
 call pathogen#helptags()
