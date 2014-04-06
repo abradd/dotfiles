@@ -1,8 +1,10 @@
 ".vimrc file for setting on startup
 
-
 "automatically reload the .vimrc file
 autocmd! bufwritepost .vimrc source %
+
+"only show 5 words when suggesting spelling
+set spellsuggest=5
 
 "set vim to noncompatible mode which provides the most features
 set nocompatible
