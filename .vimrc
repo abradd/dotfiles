@@ -9,9 +9,11 @@ set spellsuggest=5
 "set vim to noncompatible mode which provides the most features
 set nocompatible
 
-"set text wrap automatically
+"set text wrap automatically and linebreak so that words are not broken between
+"lines
 set wrap
 "set textwidth=80
+set linebreak
 
 "set vim to use the same indent as the previous line
 set autoindent
@@ -38,6 +40,11 @@ map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
+
+"remap escape in insert mode
+inoremap jk <ESC>
+inoremap jj <ESC>
+inoremap kj <ESC>
 
 "easier moving between tabs
 map <Leader>n <esc>:tabprevious<CR>
@@ -88,7 +95,8 @@ syntax on
 
 "Color scheme
 "set t_Co=256
-color darkblue 
+set background=dark
+color solarized
 
 "Supertab settings
 let g:SuperTabDefaultCompletionType = "context"
