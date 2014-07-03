@@ -10,11 +10,14 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "Call all packages
 NeoBundle 'LaTeX-Box-Team/LaTeX-Box', {'rev' : '61528a'}
 NeoBundle 'scrooloose/nerdtree', {'rev' : 'b0bb78'}
-""NeoBundle 'ivanov/vim-ipython', {'rev' : 'fa8c9b'}
+"NeoBundle 'ivanov/vim-ipython', {'rev' : 'fa8c9b'}
 NeoBundle 'Lokaltog/vim-powerline', {'rev' : '09c0ce'}
 NeoBundle 'benmills/vimux'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'scrooloose/syntastic'
+NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'junegunn/goyo.vim'
+NeoBundle 'junegunn/limelight.vim'
 call neobundle#end()
 
 "automatically reload the .vimrc file
@@ -40,7 +43,6 @@ nmap <leader>l :set list!<CR>
 
 "invisible characters
 set listchars=tab:▸\ ,eol:¬
-set list
 
 "set the number of commands the vim holds in its register
 set history=700
