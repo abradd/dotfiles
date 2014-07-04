@@ -1,5 +1,26 @@
 ".vimrc file for setting on startup
 
+"Setting up NeoBundle
+if has('vim_starting')
+set nocompatible    
+set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif  
+call neobundle#begin(expand('~/.vim/bundle/'))
+NeoBundleFetch 'Shougo/neobundle.vim'
+"Call all packages
+NeoBundle 'LaTeX-Box-Team/LaTeX-Box', {'rev' : '61528a'}
+NeoBundle 'scrooloose/nerdtree', {'rev' : 'b0bb78'}
+"NeoBundle 'ivanov/vim-ipython', {'rev' : 'fa8c9b'}
+NeoBundle 'Lokaltog/vim-powerline', {'rev' : '09c0ce'}
+NeoBundle 'benmills/vimux'
+NeoBundle 'majutsushi/tagbar'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'junegunn/goyo.vim'
+NeoBundle 'junegunn/limelight.vim'
+NeoBundle 'altercation/vim-colors-solarized'
+call neobundle#end()
+
 "automatically reload the .vimrc file
 autocmd! bufwritepost .vimrc source %
 
@@ -9,12 +30,20 @@ set spellsuggest=5
 "set vim to noncompatible mode which provides the most features
 set nocompatible
 
-"set text wrap automatically
+"set text wrap automatically and linebreak so that words are not broken between
+"lines
 set wrap
 "set textwidth=80
+set linebreak
 
 "set vim to use the same indent as the previous line
 set autoindent
+
+"toggle set list
+nmap <leader>l :set list!<CR>
+
+"invisible characters
+set listchars=tab:▸\ ,eol:¬
 
 "set the number of commands the vim holds in its register
 set history=700
@@ -38,6 +67,11 @@ map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
+
+"remap escape in insert mode
+inoremap jk <ESC>
+inoremap jj <ESC>
+inoremap kj <ESC>
 
 "easier moving between tabs
 map <Leader>n <esc>:tabprevious<CR>
@@ -77,18 +111,27 @@ set smartcase
 
 "NerdTree
 "https://github.com/scrooloose/nerdtree.git
+map <C-n> :NERDTreeToggle<CR>
 
-"setup pathogen to manage plugins
-execute pathogen#infect()
-call pathogen#helptags()
+"Tagbar
+nmap <C-t> :TagbarToggle<CR>
+
+""setup pathogen to manage plugins
+"execute pathogen#infect()
+"call pathogen#incubate()
+"call pathogen#helptags()
 
 "filetype detection
 filetype plugin indent on
 syntax on
 
 "Color scheme
-"set t_Co=256
-color darkblue 
+set t_Co=256
+set background=dark
+color solarized
+
+"Matlab settings
+source $VIMRUNTIME/macros/matchit.vim
 
 "Supertab settings
 let g:SuperTabDefaultCompletionType = "context"
