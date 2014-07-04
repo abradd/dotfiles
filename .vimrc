@@ -175,3 +175,12 @@ map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 " http://www.vim.org/scripts/download_script.php?src_id=5492
 set nofoldenable
 
+"================================================
+"Matlab setup
+"================================================
+"https://github.com/sgeb/vim-matlab.git
+
+source $VIMRUNTIME/macros/matchit.vim
+
+"Compile checking
+autocmd BufEnter *.m    compiler mlint
