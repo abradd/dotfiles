@@ -227,3 +227,8 @@ source $VIMRUNTIME/macros/matchit.vim
 
 "Compile checking
 autocmd BufEnter *.m    compiler mlint
+
+"============
+"Vimux stuff
+"============
+let g:VimuxUseNearest = 1
