@@ -18,6 +18,12 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'junegunn/goyo.vim'
 NeoBundle 'junegunn/limelight.vim'
+NeoBundle 'godlygeek/tabular'
+NeoBundle 'christoomey/vim-tmux-navigator'
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'honza/vim-snippets'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-rsi'
 NeoBundle 'altercation/vim-colors-solarized'
 call neobundle#end()
 
@@ -42,6 +48,18 @@ set autoindent
 "toggle set list
 nmap <leader>l :set list!<CR>
 
+"alter the deafult behaviour of j and k for long lines of softwrapped text.
+"This is most useful for latex files which have very long lines.
+function! Changejk()
+    nnoremap j gj
+    nnoremap k gk
+    vnoremap j gj
+    vnoremap k gk
+endfunction
+
+"open .vimrc quickly
+nnoremap <leader>v :e ~/.vimrc<CR>
+
 "invisible characters
 set listchars=tab:▸\ ,eol:¬
 
@@ -51,7 +69,7 @@ set undolevels=700
 
 "better copy and paste
 set pastetoggle=<F2>
-set clipboard=unnamedplus
+"set clipboard=unnamedplus
 
 "display current cursor position in the bottom right of the screen and show incomplete commands
 set ruler
@@ -73,12 +91,17 @@ inoremap jk <ESC>
 inoremap jj <ESC>
 inoremap kj <ESC>
 
+"show dollar sign at the end of a selection
+set cpoptions+=$
+
 "easier moving between tabs
 map <Leader>n <esc>:tabprevious<CR>
 map <Leader>m <esc>:tabnext<CR>
 
 "map sort function to a key
 vnoremap <Leader>s :sort<CR>
+"map for running vimux/matlab command
+nmap <Leader>r :call VimuxRunCommand("HW2_generate_figures")<CR>
 
 "easier moving of code blocks
 vnoremap < <gv
@@ -114,7 +137,7 @@ set smartcase
 map <C-n> :NERDTreeToggle<CR>
 
 "Tagbar
-nmap <C-t> :TagbarToggle<CR>
+"nmap <C-t> :TagbarToggle<CR>
 
 ""setup pathogen to manage plugins
 "execute pathogen#infect()
