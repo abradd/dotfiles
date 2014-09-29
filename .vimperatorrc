@@ -1,0 +1,15 @@
+"Config file for vimperator for Adrian Bradd
+
+"Use sane hintchars and reasonable colours
+set hintchars=hsdfgyuiopqwertnmzxcvb
+highlight Hint font-size:100%;color:white;background-color:black;padding:2px;
+
+"Make the command line a larger font so that it can be read
+highlight CmdLine -append font-size:16px;
+highlight CompTitle -append font-size:16px;
+highlight CompResult -append font-size:16px;
+highlight CompDesc -append font-size:16px;
+
+"gt and gT sucks for tab navigation
+nmap K gt
+nmap J gT

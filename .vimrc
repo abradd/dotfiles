@@ -23,6 +23,7 @@ NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-rsi'
 call neobundle#end()
 
 "automatically reload the .vimrc file
@@ -97,7 +98,7 @@ map <Leader>n <esc>:tabprevious<CR>
 map <Leader>m <esc>:tabnext<CR>
 
 "map for running vimux/matlab command
-nmap <Leader>r :call VimuxRunCommand("program('in.param')")<CR>
+nmap <Leader>r :call VimuxRunCommand("HW2_generate_figures")<CR>
 
 "easier moving of code blocks
 vnoremap < <gv
@@ -133,7 +134,7 @@ set smartcase
 map <C-n> :NERDTreeToggle<CR>
 
 "Tagbar
-nmap <C-t> :TagbarToggle<CR>
+"nmap <C-t> :TagbarToggle<CR>
 
 ""setup pathogen to manage plugins
 "execute pathogen#infect()
