@@ -10,7 +10,6 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "Call all packages
 NeoBundle 'LaTeX-Box-Team/LaTeX-Box', {'rev' : '61528a'}
 NeoBundle 'scrooloose/nerdtree', {'rev' : 'b0bb78'}
-"NeoBundle 'ivanov/vim-ipython', {'rev' : 'fa8c9b'}
 NeoBundle 'Lokaltog/vim-powerline', {'rev' : '09c0ce'}
 NeoBundle 'benmills/vimux'
 NeoBundle 'majutsushi/tagbar'
@@ -75,7 +74,7 @@ set ruler
 set showcmd
 
 "remap , to <leader> key
-let mapleader = ","
+let mapleader = " "
 
 "bind Ctrl+<movement> keys to move around the windows, instead of using
 "Ctrl+w+<movement>
@@ -92,10 +91,6 @@ inoremap kj <ESC>
 
 "show dollar sign at the end of a selection
 set cpoptions+=$
-
-"easier moving between tabs
-map <Leader>n <esc>:tabprevious<CR>
-map <Leader>m <esc>:tabnext<CR>
 
 "map for running vimux/matlab command
 nmap <Leader>r :call VimuxRunCommand("HW2_generate_figures")<CR>
@@ -132,6 +127,9 @@ set smartcase
 "NerdTree
 "https://github.com/scrooloose/nerdtree.git
 map <C-n> :NERDTreeToggle<CR>
+
+"Set .tex files to latex by default
+let g:tex_flavor= "latex"
 
 "Tagbar
 "nmap <C-t> :TagbarToggle<CR>
@@ -236,5 +234,5 @@ map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 " " mkdir -p ~/.vim/ftplugin
 " " wget -O ~/.vim/ftplugin/python_editing.vim
 " http://www.vim.org/scripts/download_script.php?src_id=5492
-set nofoldenable
+"set nofoldenable
 
