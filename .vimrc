@@ -93,17 +93,12 @@ inoremap kj <ESC>
 "show dollar sign at the end of a selection
 set cpoptions+=$
 
-<<<<<<< HEAD
-"easier moving between tabs
-map <Leader>n <esc>:tabprevious<CR>
-map <Leader>m <esc>:tabnext<CR>
 
 "map sort function to a key
 vnoremap <Leader>s :sort<CR>
-=======
->>>>>>> 6fa82846df67663c44ab3775a758721cff3b9d7d
+
 "map for running vimux/matlab command
-nmap <Leader>r :call VimuxRunCommand("HW2_generate_figures")<CR>
+nmap <Leader>r :call VimuxRunCommand("run " . bufname('%'))<CR>
 
 "easier moving of code blocks
 vnoremap < <gv
