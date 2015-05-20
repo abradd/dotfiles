@@ -23,6 +23,7 @@ NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-rsi'
+NeoBundle 'vimwiki/vimwiki'
 call neobundle#end()
 
 "automatically reload the .vimrc file

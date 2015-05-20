@@ -13,3 +13,6 @@ highlight CompDesc -append font-size:16px;
 "gt and gT sucks for tab navigation
 nmap K gt
 nmap J gT
+
+"make default search engine duckduckgo
+set defsearch=duckduckgo

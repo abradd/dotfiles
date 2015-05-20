@@ -3,6 +3,14 @@
 ;; Disable the splash screen (to enable it agin, replace the t with 0)
 (setq inhibit-splash-screen t)
 
+;;Set org-directory
+(setq org-directory "~/Dropbox")
+(setq org-mobile-directory "~/Dropbox/MobileOrg")
+(setq org-agenda-files (quote ("~/Dropbox/todo.org")))
+(setq org-mobile-inbox-for-pull "~/Dropbox/inbox.org")
+			      
+
+
 ;;Setting up tags
 (setq org-tag-alist '(("@work" . ?w) ("@home" . ?h) ("laptop" . ?l)))
 
@@ -27,7 +35,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("~/test1.org"))))
+ '(org-agenda-files (quote ("~/Dropbox/todo.org"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
