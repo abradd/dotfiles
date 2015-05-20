@@ -24,6 +24,7 @@ NeoBundle 'honza/vim-snippets'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-rsi'
 NeoBundle 'vimwiki/vimwiki'
+NeoBundle 'altercation/vim-colors-solarized'
 call neobundle#end()
 
 "automatically reload the .vimrc file
@@ -93,8 +94,12 @@ inoremap kj <ESC>
 "show dollar sign at the end of a selection
 set cpoptions+=$
 
+
+"map sort function to a key
+vnoremap <Leader>s :sort<CR>
+
 "map for running vimux/matlab command
-nmap <Leader>r :call VimuxRunCommand("HW2_generate_figures")<CR>
+nmap <Leader>r :call VimuxRunCommand("run " . bufname('%'))<CR>
 
 "easier moving of code blocks
 vnoremap < <gv
@@ -237,3 +242,17 @@ map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 " http://www.vim.org/scripts/download_script.php?src_id=5492
 "set nofoldenable
 
+"================================================
+"Matlab setup
+"================================================
+"https://github.com/sgeb/vim-matlab.git
+
+source $VIMRUNTIME/macros/matchit.vim
+
+"Compile checking
+autocmd BufEnter *.m    compiler mlint
+
+"============
+"Vimux stuff
+"============
+let g:VimuxUseNearest = 1
