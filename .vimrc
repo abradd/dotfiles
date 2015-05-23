@@ -94,6 +94,8 @@ inoremap kj <ESC>
 "show dollar sign at the end of a selection
 set cpoptions+=$
 
+"vimwiki settings
+let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki'}]
 
 "map sort function to a key
 vnoremap <Leader>s :sort<CR>
