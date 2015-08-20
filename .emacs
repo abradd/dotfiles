@@ -4,15 +4,22 @@
 (setq inhibit-splash-screen t)
 
 ;;Set org-directory
-(setq org-directory "~/Dropbox")
+(setq org-directory "~/Dropbox/tasks")
 (setq org-mobile-directory "~/Dropbox/MobileOrg")
-(setq org-agenda-files (quote ("~/Dropbox/todo.org")))
+(setq org-agenda-files (quote ("~/Dropbox/tasks/todo.org")))
 (setq org-mobile-inbox-for-pull "~/Dropbox/inbox.org")
 			      
-
+;;Turn on git.el
+(require 'git)
 
 ;;Setting up tags
 (setq org-tag-alist '(("@work" . ?w) ("@home" . ?h) ("laptop" . ?l)))
+
+;;Setting indent on startup
+(setq org-startup-indented 'indent)
+
+;;Soft wrapping at window edge
+(setq line-move-visual nil)
 
 ;; Enable transient mark mode
 (transient-mark-mode 1)
@@ -35,7 +42,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("~/Dropbox/todo.org"))))
+ '(org-agenda-files (quote ("~/Dropbox/tasks/todo.org"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
