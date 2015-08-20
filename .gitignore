@@ -1,0 +1,5 @@
+*.swp
+.newsbeuter/cache.db
+.newsbeuter/history.cmdline
+.newsbeuter/history.search
+*.orig
