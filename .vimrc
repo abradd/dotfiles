@@ -8,7 +8,7 @@ endif
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 "Call all packages
-NeoBundle 'LaTeX-Box-Team/LaTeX-Box', {'rev' : '61528a'}
+"NeoBundle 'LaTeX-Box-Team/LaTeX-Box', {'rev' : '61528a'}
 NeoBundle 'scrooloose/nerdtree', {'rev' : 'b0bb78'}
 NeoBundle 'Lokaltog/vim-powerline', {'rev' : '09c0ce'}
 NeoBundle 'benmills/vimux'
@@ -19,12 +19,13 @@ NeoBundle 'junegunn/goyo.vim'
 NeoBundle 'junegunn/limelight.vim'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'christoomey/vim-tmux-navigator'
-NeoBundle 'SirVer/ultisnips'
+"NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-rsi'
 NeoBundle 'vimwiki/vimwiki'
 NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'scrooloose/nerdcommenter'
 call neobundle#end()
 
 "automatically reload the .vimrc file
