@@ -40,8 +40,17 @@ set nocompatible
 "set text wrap automatically and linebreak so that words are not broken between
 "lines
 set wrap
-"set textwidth=80
 set linebreak
+set textwidth=80
+set wrapmargin=0
+
+"show line numbers and length
+set number  "show line numbers
+set tw=79	"width of document
+"set nowrap 	"don't automatically wrap on load
+set fo-=t	"don't automatically wrap text when writing
+"set colorcolumn=80
+highlight ColorColumn ctermbg=233
 
 "set vim to use the same indent as the previous line
 set autoindent
@@ -108,13 +117,6 @@ nmap <Leader>r :call VimuxRunCommand("run " . bufname('%'))<CR>
 vnoremap < <gv
 vnoremap > >gv
 
-"show line numbers and length
-set number  "show line numbers
-set tw=79	"width of document
-"set nowrap 	"don't automatically wrap on load
-set fo-=t	"don't automatically wrap text when writing
-"set colorcolumn=80
-highlight ColorColumn ctermbg=233
 
 "easier formatting of paragraphs
 vmap Q gq

@@ -4,15 +4,22 @@
 (setq inhibit-splash-screen t)
 
 ;;Set org-directory
-(setq org-directory "~/Dropbox/tasks/")
+(setq org-directory "~/Dropbox/tasks")
 (setq org-mobile-directory "~/Dropbox/MobileOrg")
 (setq org-agenda-files (quote ("~/Dropbox/tasks/todo.org")))
 (setq org-mobile-inbox-for-pull "~/Dropbox/inbox.org")
 			      
-
+;;Turn on git.el
+(require 'git)
 
 ;;Setting up tags
 (setq org-tag-alist '(("@work" . ?w) ("@home" . ?h) ("laptop" . ?l)))
+
+;;Setting indent on startup
+(setq org-startup-indented 'indent)
+
+;;Soft wrapping at window edge
+(setq line-move-visual nil)
 
 ;; Enable transient mark mode
 (transient-mark-mode 1)
