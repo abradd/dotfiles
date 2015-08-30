@@ -10,22 +10,24 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "Call all packages
 "NeoBundle 'LaTeX-Box-Team/LaTeX-Box', {'rev' : '61528a'}
 NeoBundle 'scrooloose/nerdtree', {'rev' : 'b0bb78'}
-NeoBundle 'Lokaltog/vim-powerline', {'rev' : '09c0ce'}
+"NeoBundle 'Lokaltog/vim-powerline', {'rev' : '09c0ce'}
 NeoBundle 'benmills/vimux'
 NeoBundle 'majutsushi/tagbar'
-NeoBundle 'scrooloose/syntastic'
+"NeoBundle 'scrooloose/syntastic'
 NeoBundle 'Lokaltog/vim-easymotion'
-NeoBundle 'junegunn/goyo.vim'
-NeoBundle 'junegunn/limelight.vim'
+"NeoBundle 'junegunn/goyo.vim'
+"NeoBundle 'junegunn/limelight.vim'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'christoomey/vim-tmux-navigator'
 "NeoBundle 'SirVer/ultisnips'
-NeoBundle 'honza/vim-snippets'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-rsi'
-NeoBundle 'vimwiki/vimwiki'
+"NeoBundle 'honza/vim-snippets'
+"NeoBundle 'tpope/vim-surround'
+"NeoBundle 'tpope/vim-rsi'
+"NeoBundle 'vimwiki/vimwiki'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'edkolev/tmuxline.vim'
 call neobundle#end()
 
 "automatically reload the .vimrc file
@@ -158,6 +160,9 @@ syntax on
 set t_Co=256
 set background=dark
 color solarized
+
+"airline setup
+let g:airline_powerline_fonts = 1
 
 "Matlab settings
 source $VIMRUNTIME/macros/matchit.vim
