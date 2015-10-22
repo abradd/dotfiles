@@ -12,6 +12,9 @@
 ;;Turn on git.el
 (require 'git)
 
+;;Log comletion time
+(setq org-log-done 'time)
+
 ;;Setting up tags
 (setq org-tag-alist '(("@work" . ?w) ("@home" . ?h) ("laptop" . ?l)))
 
@@ -19,7 +22,7 @@
 (setq org-startup-indented 'indent)
 
 ;;Soft wrapping at window edge
-(setq line-move-visual nil)
+(global-visual-line-mode 1)
 
 ;; Enable transient mark mode
 (transient-mark-mode 1)
@@ -36,7 +39,7 @@
 
 ;;set keywords for todo list
 (setq org-todo-keywords
-      '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
+      '((sequence "TODO" "IN-PROGRESS" "WAITING" "|"  "DONE(@)" "WONT-BE-DONE(@)")))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
