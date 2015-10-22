@@ -1,4 +1,4 @@
-export PATH="/Users/links_world/src/bin:/Users/links_world/src:/Users/links_world/anaconda/bin:/usr/local/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/bin:/usr/sbin:/bin:/sbin:/Applications/MATLAB_R2014b.app/bin:/usr/bin/env/tmuxomatic:/usr/local/texlive/2014/bin/x86_64-darwin/"
+export PATH="/Users/links_world/src/bin:/Users/links_world/src:/Users/links_world/anaconda/bin:/usr/local/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/bin:/usr/sbin:/bin:/sbin:/Applications/MATLAB_R2014b.app/bin:/usr/bin/env/tmuxomatic:/usr/local/texlive/2014/bin/x86_64-darwin"
 
 alias emacs="/usr/local/Cellar/emacs/24.3/Emacs.app/Contents/MacOS/Emacs"
 
