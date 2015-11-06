@@ -10,7 +10,7 @@
 (setq org-mobile-inbox-for-pull "~/Dropbox/inbox.org")
 			      
 ;;Turn on git.el
-(require 'git)
+;;(require 'git)
 
 ;;Setting up tags
 (setq org-tag-alist '(("@work" . ?w) ("@home" . ?h) ("laptop" . ?l)))

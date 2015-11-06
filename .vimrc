@@ -21,7 +21,7 @@ NeoBundle 'godlygeek/tabular'
 NeoBundle 'christoomey/vim-tmux-navigator'
 "NeoBundle 'SirVer/ultisnips'
 "NeoBundle 'honza/vim-snippets'
-"NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-surround'
 "NeoBundle 'tpope/vim-rsi'
 "NeoBundle 'vimwiki/vimwiki'
 NeoBundle 'altercation/vim-colors-solarized'
@@ -71,6 +71,9 @@ endfunction
 
 "open .vimrc quickly
 nnoremap <leader>v :e ~/.vimrc<CR>
+
+"run cavestory or otherwise
+nnoremap <leader>g :!make && make run<CR>
 
 "invisible characters
 set listchars=tab:▸\ ,eol:¬
