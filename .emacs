@@ -1,3 +1,4 @@
+
 ;; -*- mode: elisp -*-
 
 ;; Disable the splash screen (to enable it agin, replace the t with 0)
@@ -14,6 +15,9 @@
 
 ;;Log comletion time
 (setq org-log-done 'time)
+
+;;set default font size
+(set-face-attribute 'default nil :height 140)
 
 ;;Setting up tags
 (setq org-tag-alist '(("@work" . ?w) ("@home" . ?h) ("laptop" . ?l)))
