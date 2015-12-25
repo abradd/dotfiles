@@ -75,13 +75,17 @@
 	    (?n . "[[notes:%l][%l-notes]]")
 	    (?p . "[[papers:%l][%l-paper]]")
 	    (?A . "[[papers:%A][%A-paper]]")
-	    (?a . "[[papers:%1a/%y_%t][%l]]: %t")
+	    (?a . (concat "[[papers:%1a/%y_%t][%t]]:" (replace-regexp-in-string "\[\({|}\)\]" "" "%t")))
+	    (?j . "[[papers:%1a/%y_%t][%l]]: %t")
 	    (?t . "%t")
 	    (?h . "** %t\n:PROPERTIES:\n:Custom_ID: %l\n:END:\n[[papers:%l][%l-paper]]")))))
   (define-key org-mode-map (kbd "C-c )") 'reftex-citation)
   (define-key org-mode-map (kbd "C-c (") 'org-mode-reftex-search))
  
 (add-hook 'org-mode-hook 'org-mode-reftex-setup)
+
+(setq org-link-abbrev-alist
+      '(("papers" . "~/Google Drive/Literature/%s.pdf"))) 
 
 (defun org-mode-reftex-search ()
   ;;jump to the notes for the paper pointed to at from reftex search
