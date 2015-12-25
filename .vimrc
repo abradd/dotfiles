@@ -39,6 +39,9 @@ set spellsuggest=5
 "set vim to noncompatible mode which provides the most features
 set nocompatible
 
+"omnicomplete
+set omnifunc=syntaxcomplete#Complete
+
 "set text wrap automatically and linebreak so that words are not broken between
 "lines
 set wrap
