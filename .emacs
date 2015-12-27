@@ -1,3 +1,4 @@
+
 ;; -*- mode: elisp -*-
 
 ;; Disable the splash screen (to enable it agin, replace the t with 0)
@@ -14,6 +15,9 @@
 
 ;;Log comletion time
 (setq org-log-done 'time)
+
+;;set default font size
+(set-face-attribute 'default nil :height 140)
 
 ;;Setting up tags
 (setq org-tag-alist '(("@work" . ?w) ("@home" . ?h) ("laptop" . ?l)))
@@ -74,7 +78,8 @@
 	    (?n . "[[notes:%l][%l-notes]]")
 	    (?p . "[[papers:%l][%l-paper]]")
 	    (?A . "[[papers:%A][%A-paper]]")
-	    (?a . "[[papers:%1a/%y_%t][%l]]: %t")
+	    (?a . (concat "[[papers:%1a/%y_%t][%t]]:" (replace-regexp-in-string "\[\({|}\)\]" "" "%t")))
+	    (?j . "[[papers:%1a/%y_%t][%l]]: %t")
 	    (?t . "%t")
 	    (?h . "** %t\n:PROPERTIES:\n:Custom_ID: %l\n:END:\n[[papers:%l][%l-paper]]")))))
   (define-key org-mode-map (kbd "C-c )") 'reftex-citation)
@@ -85,6 +90,9 @@
       '(("papers" . "/Users/links_world/Google Drive/Literature/%s.pdf")))
 
 (add-hook 'org-mode-hook 'org-mode-reftex-setup)
+
+(setq org-link-abbrev-alist
+      '(("papers" . "~/Google Drive/Literature/%s.pdf"))) 
 
 (defun org-mode-reftex-search ()
   ;;jump to the notes for the paper pointed to at from reftex search

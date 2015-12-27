@@ -5,5 +5,5 @@ max-items 30
 keep-articles-days 3
 show-read-feeds no
 show-read-articles no
-mark-as-read-on-hover yes
+#mark-as-read-on-hover yes
 color info yellow black bold
