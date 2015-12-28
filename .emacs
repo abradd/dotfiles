@@ -129,3 +129,52 @@
 
 (load-theme 'solarized-dark)
 
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+
+;;Stole escape method and jk/kj from [[http://blog.lukeswart.net/wordpress/?p=45][this blog]]
+
+;;; esc quits pretty much anything (like pending prompts in the minibuffer)
+(define-key evil-normal-state-map [escape] 'keyboard-quit)
+(define-key evil-visual-state-map [escape] 'keyboard-quit)
+(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+
+;; Enable smash escape (ie 'jk' and 'kj' quickly to exit insert mode)
+(define-key evil-insert-state-map "k" #'cofi/maybe-exit-kj)
+(evil-define-command cofi/maybe-exit-kj ()
+:repeat change
+(interactive)
+(let ((modified (buffer-modified-p)))
+(insert "k")
+(let ((evt (read-event (format "Insert %c to exit insert state" ?j)
+nil 0.5)))
+(cond
+((null evt) (message ""))
+((and (integerp evt) (char-equal evt ?j))
+(delete-char -1)
+(set-buffer-modified-p modified)
+(push 'escape unread-command-events))
+(t (setq unread-command-events (append unread-command-events
+(list evt))))))))
+
+(define-key evil-insert-state-map "j" #'cofi/maybe-exit-jk)
+(evil-define-command cofi/maybe-exit-jk ()
+:repeat change
+(interactive)
+(let ((modified (buffer-modified-p)))
+(insert "j")
+(let ((evt (read-event (format "Insert %c to exit insert state" ?k)
+nil 0.5)))
+(cond
+((null evt) (message ""))
+((and (integerp evt) (char-equal evt ?k))
+(delete-char -1)
+(set-buffer-modified-p modified)
+(push 'escape unread-command-events))
+(t (setq unread-command-events (append unread-command-events
+(list evt))))))))
