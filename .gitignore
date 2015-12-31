@@ -3,3 +3,4 @@
 .newsbeuter/history.cmdline
 .newsbeuter/history.search
 *.orig
+.emacs.d/auto-save-list/*
