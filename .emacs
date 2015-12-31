@@ -1,4 +1,3 @@
-
 ;; -*- mode: elisp -*-
 
 ;; Disable the splash screen (to enable it agin, replace the t with 0)
@@ -178,3 +177,19 @@ nil 0.5)))
 (push 'escape unread-command-events))
 (t (setq unread-command-events (append unread-command-events
 (list evt))))))))
+
+(require 'openwith)
+(openwith-mode t)
+(setq openwith-associations '(("\\.pptx\\'" "powerpoint" (file))))
+
+;;
+;;Latex inline setup
+;;
+(setq org-latex-create-formula-image-program 'dvipng)
+
+;;Altering the path variable so that latex can be found
+(setenv "PATH" (concat (getenv "PATH") ":/usr/local/texlive/2014/bin/x86_64-darwin/"))
+(setq exec-path (append exec-path '("/usr/local/texlive/2014/bin/x86_64-darwin/")))
+
+;;Setting the size of inline latex formulae
+(setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
