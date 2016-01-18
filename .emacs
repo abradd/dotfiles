@@ -196,7 +196,8 @@ nil 0.5)))
 
 (setq org-capture-templates
       '(("t" "Notes" entry (file+datetree "~/Google Drive/notes/notebook.org" "Tasks")
-             "")))
+            "* %^{Description} %^g %? 
+Added: %U" )))
 
 (global-set-key (kbd "C-c c") 'org-capture)
 
