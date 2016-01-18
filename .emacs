@@ -177,3 +177,25 @@ nil 0.5)))
 (push 'escape unread-command-events))
 (t (setq unread-command-events (append unread-command-events
 (list evt))))))))
+
+(setq org-capture-templates
+      '(("t" "Notes" entry (file+datetree "~/Google Drive/notes/notebook.org" "Tasks")
+             "")))
+
+(global-set-key (kbd "C-c c") 'org-capture)
+
+;'(org-capture-templates
+;(quote (
+;("n" "Notes" entry (file+datetree 
+;"~/Google Drive/notes/notebook.org") 
+;"* %^{Description} %^g %? 
+;Added: %U") 
+;)))
+;'(org-capture-templates 
+;(quote (
+;("a" "Appointment" entry (file+headline 
+;"~/Google Drive/notes/notebook.org" "Calendar") 
+;"* APPT %^{Description} %^g
+;%?
+;Added: %U") 
+;)))
