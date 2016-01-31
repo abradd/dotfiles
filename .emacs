@@ -107,8 +107,19 @@
 
 ;;Evil mode
 
+;;evil-leader
+(require 'evil-leader)
+(setq evil-leader/in-all-states 1)
+(global-evil-leader-mode)
+(evil-leader/set-leader "<SPC>")
+(evil-leader/set-key "x" 'execute-extended-command)
+
 (require 'evil)
 (evil-mode 1)
+
+;;(eval-after-load "evil-commands"
+ ;; (define-key evil-forward-char "<SPC>" nil))
+
 
 ;;These commands need to be called BEFORE load-theme
 ;; Don't change the font for some headings and titles
@@ -249,3 +260,7 @@ BEG and END default to the buffer boundaries."
         (push ov org-inline-image-overlays))))))))))
 
 ;;mogrify -resize 80x80 -background white -gravity center -extent 80x80 -format jpg -quality 75 -path ../thumbs .
+
+;;global line numbers
+(global-linum-mode 1)
+
