@@ -206,7 +206,7 @@ nil 0.5)))
 (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
 
 (setq org-capture-templates
-      '(("t" "Notes" entry (file+datetree "~/Google Drive/notes/notebook.org" "Tasks")
+      '(("t" "Notes" entry (file+datetree "~/cloud/notes/notebook.org" "Tasks")
             "* %^{Description} %^g %? 
 Added: %U" )))
 
