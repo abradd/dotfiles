@@ -40,6 +40,9 @@
 ;; (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 ;; The above is the default in recent emacsen
 
+;;org-id
+(require 'org-id)
+
 ;;set keywords for todo list
 (setq org-todo-keywords
       '((sequence "TODO" "IN-PROGRESS" "WAITING" "|"  "DONE(@)" "WONT-BE-DONE(@)")))
@@ -54,6 +57,7 @@
  '(org-agenda-files
    (quote
     ("~/Dropbox/tasks/quals_prep.org" "~/Google Drive/hydrogel_paper_140830/notes.org" "~/Dropbox/tasks/todo.org")))
+ '(org-id-link-to-org-use-id t)
  '(reftex-cite-punctuation (quote (", " " and " " et al"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -263,4 +267,3 @@ BEG and END default to the buffer boundaries."
 
 ;;global line numbers
 (global-linum-mode 1)
-
