@@ -87,7 +87,7 @@ set undolevels=700
 
 "better copy and paste
 set pastetoggle=<F2>
-"set clipboard=unnamedplus
+set clipboard=unnamedplus
 
 "display current cursor position in the bottom right of the screen and show incomplete commands
 set ruler
