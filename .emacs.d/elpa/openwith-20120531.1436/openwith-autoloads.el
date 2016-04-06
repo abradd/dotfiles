@@ -3,8 +3,9 @@
 ;;; Code:
 (add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
 
-;;;### (autoloads nil "openwith" "openwith.el" (22146 57791 0 0))
-;;; Generated autoloads from openwith.el
+;;;### (autoloads nil "openwith" "../../../../.emacs.d/elpa/openwith-20120531.1436/openwith.el"
+;;;;;;  "a4af867ebdfe02a7758618e1aebf007a")
+;;; Generated autoloads from ../../../../.emacs.d/elpa/openwith-20120531.1436/openwith.el
 
 (defvar openwith-mode nil "\
 Non-nil if Openwith mode is enabled.
@@ -19,6 +20,12 @@ or call the function `openwith-mode'.")
 Automatically open files with external programs.
 
 \(fn &optional ARG)" t nil)
+
+;;;***
+
+;;;### (autoloads nil nil ("../../../../.emacs.d/elpa/openwith-20120531.1436/openwith-autoloads.el"
+;;;;;;  "../../../../.emacs.d/elpa/openwith-20120531.1436/openwith.el")
+;;;;;;  (22277 9559 361253 0))
 
 ;;;***
 
