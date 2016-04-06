@@ -1,6 +1,6 @@
 export PATH="/Users/links_world/src/bin:/Users/links_world/src:/Users/links_world/anaconda/bin:/usr/local/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/bin:/usr/sbin:/bin:/sbin:/Applications/MATLAB_R2014b.app/bin:/usr/bin/env/tmuxomatic:/usr/local/texlive/2014/bin/x86_64-darwin:/usr/local/Cellar/sdl/1.2.15/include:/usr/local/texlive/2014basic/bin/x86_64-darwin"
 
-alias emacs="/usr/local/Cellar/emacs/24.3/Emacs.app/Contents/MacOS/Emacs"
+alias emacs="/usr/local/Cellar/emacs/24.5/Emacs.app/Contents/MacOS/Emacs"
 
 alias lr1="ssh -Y abradd@linrack1.ee.columbia.edu"
 alias lr2="ssh -Y abradd@linrack2.ee.columbia.edu"
@@ -21,6 +21,10 @@ alias scpf="scp abradd@linrack5.ee.columbia.edu"
 alias gcc5="/usr/local/Cellar/gcc5/5.1.0/bin/gcc-5"
 
 alias imagej="/Applications/Fiji.app/Contents/MacOS/ImageJ-macosx"
+alias firefox="/Applications/Firefox.app/Contents/MacOS/firefox"
 
+newlink () {
+osascript -e 'tell application "Firefox" to open location \"$1\"'
+}
 
 set -o vi

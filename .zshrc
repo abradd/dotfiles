@@ -86,3 +86,5 @@ source $ZSH/oh-my-zsh.sh
 export GPG_TTY=$(tty)
 
 source ~/.bashrc
+
+alias firefox="/Applications/Firefox.app/Contents/MacOS/firefox"

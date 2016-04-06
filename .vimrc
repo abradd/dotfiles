@@ -26,8 +26,8 @@ NeoBundle 'tpope/vim-surround'
 "NeoBundle 'vimwiki/vimwiki'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'edkolev/tmuxline.vim'
+"NeoBundle 'bling/vim-airline'
+"NeoBundle 'edkolev/tmuxline.vim'
 call neobundle#end()
 
 "automatically reload the .vimrc file
@@ -87,7 +87,7 @@ set undolevels=700
 
 "better copy and paste
 set pastetoggle=<F2>
-set clipboard=unnamedplus
+set clipboard^=unnamed
 
 "display current cursor position in the bottom right of the screen and show incomplete commands
 set ruler
