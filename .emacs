@@ -3,7 +3,8 @@
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("org" . "http://orgmode.org/elpa/")
-                         ("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")))
+                         ("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
 (package-initialize)
 
 (defun require-package (package)
@@ -73,16 +74,19 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(ledger-reports
    (quote
-    (("balance" "ledger bal")
+    (("EatingOutMonthlyBal" "ledger -f %(ledger-file) -b \"last month\" bal \"eating out\"")
+     ("EatingOutMonthReg" "ledger -f %(ledger-file) -b \"last month\" reg \"Eating Out\"")
+     ("MonthlyReg" "ledger -f %(ledger-file) -b \"last month\" reg checking")
+     ("balance" "ledger bal")
      ("accounts" "ledger Checking")
      ("bal" "ledger -f %(ledger-file) bal")
      ("reg" "ledger -f %(ledger-file) reg")
      ("payee" "ledger -f %(ledger-file) reg @%(payee)")
      ("account" "ledger -f %(ledger-file) reg %(account)"))))
  '(org-agenda-files
-   (quote
+  (quote
     ("~/cloud/notes/notebook.org" "~/Dropbox/tasks/quals_prep.org" "~/Google Drive/hydrogel_paper_140830/notes.org" "~/Dropbox/tasks/todo.org")))
- '(org-babel-load-languages (quote ((sh . t) (python . t) (emacs-lisp . t))))
+ '(org-babel-load-languages (quote ((sh . t) (python . t) (emacs-lisp . t)))
  '(org-capture-templates
    (quote
     (("t" "Notes" entry
@@ -94,9 +98,9 @@ Added: %U")
       "* %^{Description} %^g %? 
 Added: %U"))))
  '(org-id-link-to-org-use-id t)
- ;; '(org-modules
- ;;   (quote
- ;;    (org-bbdb org-bibtex org-docview org-gnus org-habit org-info org-irc org-mhe org-rmail org-w3m)))
+ '(org-modules
+   (quote
+    (org-bbdb org-bibtex org-docview org-gnus org-habit org-info org-irc org-mhe org-rmail org-w3m)))
  '(reftex-cite-punctuation (quote (", " " and " " et al")))
  '(show-paren-mode t))
 (custom-set-faces
@@ -154,13 +158,13 @@ Added: %U"))))
 ;;Evil mode
 
 ;;evil-leader
-(require 'evil-leader)
+(require-package 'evil-leader)
 (setq evil-leader/in-all-states 1)
 (global-evil-leader-mode)
 (evil-leader/set-leader "<SPC>")
 (evil-leader/set-key "x" 'execute-extended-command)
 
-(require 'evil)
+(require-package 'evil)
 (evil-mode 1)
 
 ;;acejump enable
@@ -198,6 +202,7 @@ Added: %U"))))
 ;;(eval-after-load "evil-commands"
  ;; (define-key evil-forward-char "<SPC>" nil))
 
+(require-package 'solarized-theme)
 ;;These commands need to be called BEFORE load-theme
 ;; Don't change the font for some headings and titles
 (setq solarized-use-variable-pitch nil)
@@ -309,7 +314,7 @@ nil 0.5)))
 (setq exec-path (append exec-path '("/Users/links_world/src")))
 (setq load-path (append load-path '("/usr/local/bin")))
 
-(require 'openwith)
+(require-package 'openwith)
 (openwith-mode t)
 (setq openwith-associations '(("\\.pptx\\'" "powerpoint" (file))))
 ;; (setq openwith-associations '(("\\.JPG\\'" "open" (file))))
@@ -378,18 +383,19 @@ BEG and END default to the buffer boundaries."
 
 ;;mogrify -resize 80x80 -background white -gravity center -extent 80x80 -format jpg -quality 75 -path ../thumbs .
 
+(require-package 'nlinum)
 ;;global line numbers
 ;; (global-linum-mode 1)
 (global-nlinum-mode 1)
 
 ;ido-mode
-(require `ido)
+(require-package `ido)
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode 1)
 
 ;;org-reveal
-(require 'ox-reveal)
+(require-package 'ox-reveal)
 
 (setq org-reveal-root "file:///Users/links_world/reveal.js")
 
@@ -404,7 +410,9 @@ BEG and END default to the buffer boundaries."
 ;;org-ref setup
 (setq reftex-default-bibliography '("~/Google Drive/literature/library.bib"))
 
-(require 'org-ref)
+(require-package 'helm-bibtex)
+
+(require-package 'org-ref)
 ;; see org-ref for use of these variables
 (setq org-ref-bibliography-notes "~/Google Drive/literature/notes.org"
       org-ref-default-bibliography '("~/Google Drive/literature/library.bib")
@@ -445,13 +453,15 @@ With prefix ARG non-nil, insert the result at the end of region."
 
 
 ;;smartparens
+(require-package 'smartparens)
+
 (require 'smartparens-config)
 
 (smartparens-mode 1)
 
 ;org-bullets
-;(require 'org-bullets)
-;(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+(require-package 'org-bullets)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 ;;header changes
 ;; (let* ((variable-tuple (cond ((x-list-fonts "Source Sans Pro") '(:font "Source Sans Pro"))
