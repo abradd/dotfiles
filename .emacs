@@ -113,7 +113,7 @@ Added: %U"))))
 ;;org-habit
 (require 'org-habit)
 
-(setq org-habit-preceding-days 7
+(setq org-habit-preceding-days 21
       org-habit-following-days 1
       org-habit-show-habits-only-for-today t
       org-habit-show-all-today t)
