@@ -86,7 +86,7 @@
  '(org-agenda-files
   (quote
     ("~/cloud/notes/notebook.org" "~/Dropbox/tasks/quals_prep.org" "~/Google Drive/hydrogel_paper_140830/notes.org" "~/Dropbox/tasks/todo.org")))
- '(org-babel-load-languages (quote ((sh . t) (python . t) (emacs-lisp . t)))
+ '(org-babel-load-languages (quote ((sh . t) (python . t) (emacs-lisp . t))))
  '(org-capture-templates
    (quote
     (("t" "Notes" entry
