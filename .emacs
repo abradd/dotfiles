@@ -3,7 +3,8 @@
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("org" . "http://orgmode.org/elpa/")
-                         ("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")))
+                         ("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
 (package-initialize)
 
 (defun require-package (package)
@@ -73,7 +74,9 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(ledger-reports
    (quote
-    (("balance" "ledger bal")
+    (("ByMonthRegChecking" "ledger -f ~/cloud/tasks/fin-data.ledger -M reg checking")
+     ("MonthlyReg" "ledger -b \"last month\" reg checking")
+     ("balance" "ledger bal")
      ("accounts" "ledger Checking")
      ("bal" "ledger -f %(ledger-file) bal")
      ("reg" "ledger -f %(ledger-file) reg")
@@ -94,9 +97,9 @@ Added: %U")
       "* %^{Description} %^g %? 
 Added: %U"))))
  '(org-id-link-to-org-use-id t)
- ;; '(org-modules
- ;;   (quote
- ;;    (org-bbdb org-bibtex org-docview org-gnus org-habit org-info org-irc org-mhe org-rmail org-w3m)))
+ '(org-modules
+   (quote
+    (org-bbdb org-bibtex org-docview org-gnus org-habit org-info org-irc org-mhe org-rmail org-w3m)))
  '(reftex-cite-punctuation (quote (", " " and " " et al")))
  '(show-paren-mode t))
 (custom-set-faces
@@ -105,6 +108,7 @@ Added: %U"))))
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(cursor ((t (:background "white" :foreground "gray100" :inverse-video t)))))
+
 
 ;;org-habit
 (require 'org-habit)
@@ -139,12 +143,12 @@ Added: %U"))))
   (define-key org-mode-map (kbd "C-c (") 'org-mode-reftex-search))
 
 (setq org-link-abbrev-alist
-      '(("papers" . "/Users/links_world/Google Drive/Literature/%s.pdf")))
+      '(("papers" . "/Users/links_world/Google Drive/literature/%s.pdf")))
 
 (add-hook 'org-mode-hook 'org-mode-reftex-setup)
 
 (setq org-link-abbrev-alist
-      '(("papers" . "~/Google Drive/Literature/%s.pdf"))) 
+      '(("papers" . "~/Google Drive/literature/%s.pdf"))) 
 
 (defun org-mode-reftex-search ()
   ;;jump to the notes for the paper pointed to at from reftex search
@@ -159,6 +163,7 @@ Added: %U"))))
 (global-evil-leader-mode)
 (evil-leader/set-leader "<SPC>")
 (evil-leader/set-key "x" 'execute-extended-command)
+(evil-leader/set-key "ee" 'eval-buffer)
 
 (require 'evil)
 (evil-mode 1)
@@ -167,6 +172,33 @@ Added: %U"))))
 (evil-leader/set-key "fw" 'evil-ace-jump-word-mode) ; ,e for Ace Jump (word)
 (evil-leader/set-key "fl" 'evil-ace-jump-line-mode) ; ,l for Ace Jump (line)
 (evil-leader/set-key "ff" 'evil-ace-jump-char-mode) ; ,f for Ace Jump (char)
+
+(defun open-notebook()
+  "Open lab notebook"
+  (interactive)
+  (find-file "~/cloud/notes/notebook.org")
+  )
+(defun open-ledger()
+  "Open ledger file"
+  (interactive)
+  (find-file "~/cloud/tasks/fin-data.ledger")
+  )
+(defun open-emacs()
+  "Open .emacs file"
+  (interactive)
+  (find-file "~/dotfiles/.emacs")
+  )
+(defun open-todo()
+  "Open todo file"
+  (interactive)
+  (find-file "~/cloud/tasks/todo.org")
+  )
+
+;ease of use shortcuts
+(evil-leader/set-key "on" 'open-notebook);
+(evil-leader/set-key "ol" 'open-ledger) ;
+(evil-leader/set-key "oe" 'open-emacs) ;
+(evil-leader/set-key "ot" 'open-todo) ;
 
 ;;evil-nerd-commenter [[https://github.com/redguardtoo/evil-nerd-commenter][link]]
 (evil-leader/set-key
@@ -401,6 +433,11 @@ BEG and END default to the buffer boundaries."
 
 (setq ledger-binary-path "/usr/local/bin/ledger")
 
+(evil-leader/set-key "lc" 'ledger-mode-clean-buffer)
+
+;;magit setup
+(require 'magit)
+
 ;;org-ref setup
 (setq reftex-default-bibliography '("~/Google Drive/literature/library.bib"))
 
@@ -423,7 +460,6 @@ BEG and END default to the buffer boundaries."
 (setq helm-bibtex-pdf-open-function
   (lambda (fpath)
     (call-process "open" nil 0 nil "-a" "/Applications/Skim.app" fpath)))
-
 
 ;; alternative
 ;;(setq helm-bibtex-pdf-open-function 'org-open-file)
@@ -449,9 +485,9 @@ With prefix ARG non-nil, insert the result at the end of region."
 
 (smartparens-mode 1)
 
-;org-bullets
-;(require 'org-bullets)
-;(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+;;org-bullets
+(require 'org-bullets)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 ;;header changes
 ;; (let* ((variable-tuple (cond ((x-list-fonts "Source Sans Pro") '(:font "Source Sans Pro"))
