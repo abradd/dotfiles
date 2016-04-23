@@ -1,0 +1,7 @@
+(require 'package)
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("org" . "http://orgmode.org/elpa/")
+                         ("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")
+                         ))
+(package-initialize)
+;;("melpa" . "http://melpa.milkbox.net/packages/")
