@@ -74,8 +74,9 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(ledger-reports
    (quote
-    (("ByMonthRegChecking" "ledger -f ~/cloud/tasks/fin-data.ledger -M reg checking")
-     ("MonthlyReg" "ledger -b \"last month\" reg checking")
+    (("EatingOutMonthlyBal" "ledger -f %(ledger-file) -b \"last month\" bal \"eating out\"")
+     ("EatingOutMonthReg" "ledger -f %(ledger-file) -b \"last month\" reg \"Eating Out\"")
+     ("MonthlyReg" "ledger -f %(ledger-file) -b \"last month\" reg checking")
      ("balance" "ledger bal")
      ("accounts" "ledger Checking")
      ("bal" "ledger -f %(ledger-file) bal")
@@ -113,7 +114,7 @@ Added: %U"))))
 ;;org-habit
 (require 'org-habit)
 
-(setq org-habit-preceding-days 7
+(setq org-habit-preceding-days 21
       org-habit-following-days 1
       org-habit-show-habits-only-for-today t
       org-habit-show-all-today t)
@@ -158,14 +159,14 @@ Added: %U"))))
 ;;Evil mode
 
 ;;evil-leader
-(require 'evil-leader)
+(require-package 'evil-leader)
 (setq evil-leader/in-all-states 1)
 (global-evil-leader-mode)
 (evil-leader/set-leader "<SPC>")
 (evil-leader/set-key "x" 'execute-extended-command)
 (evil-leader/set-key "ee" 'eval-buffer)
 
-(require 'evil)
+(require-package 'evil)
 (evil-mode 1)
 
 ;;acejump enable
@@ -230,6 +231,7 @@ Added: %U"))))
 ;;(eval-after-load "evil-commands"
  ;; (define-key evil-forward-char "<SPC>" nil))
 
+(require-package 'solarized-theme)
 ;;These commands need to be called BEFORE load-theme
 ;; Don't change the font for some headings and titles
 (setq solarized-use-variable-pitch nil)
@@ -341,7 +343,7 @@ nil 0.5)))
 (setq exec-path (append exec-path '("/Users/links_world/src")))
 (setq load-path (append load-path '("/usr/local/bin")))
 
-(require 'openwith)
+(require-package 'openwith)
 (openwith-mode t)
 (setq openwith-associations '(("\\.pptx\\'" "powerpoint" (file))))
 ;; (setq openwith-associations '(("\\.JPG\\'" "open" (file))))
@@ -410,18 +412,19 @@ BEG and END default to the buffer boundaries."
 
 ;;mogrify -resize 80x80 -background white -gravity center -extent 80x80 -format jpg -quality 75 -path ../thumbs .
 
+(require-package 'nlinum)
 ;;global line numbers
 ;; (global-linum-mode 1)
 (global-nlinum-mode 1)
 
 ;ido-mode
-(require `ido)
+(require-package `ido)
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode 1)
 
 ;;org-reveal
-(require 'ox-reveal)
+(require-package 'ox-reveal)
 
 (setq org-reveal-root "file:///Users/links_world/reveal.js")
 
@@ -441,7 +444,9 @@ BEG and END default to the buffer boundaries."
 ;;org-ref setup
 (setq reftex-default-bibliography '("~/Google Drive/literature/library.bib"))
 
-(require 'org-ref)
+(require-package 'helm-bibtex)
+
+(require-package 'org-ref)
 ;; see org-ref for use of these variables
 (setq org-ref-bibliography-notes "~/Google Drive/literature/notes.org"
       org-ref-default-bibliography '("~/Google Drive/literature/library.bib")
@@ -481,6 +486,8 @@ With prefix ARG non-nil, insert the result at the end of region."
 
 
 ;;smartparens
+(require-package 'smartparens)
+
 (require 'smartparens-config)
 
 (smartparens-mode 1)
