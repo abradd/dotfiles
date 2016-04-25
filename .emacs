@@ -85,7 +85,7 @@
      ("account" "ledger -f %(ledger-file) reg %(account)"))))
  '(org-agenda-files
    (quote
-    ("~/cloud/notes/notebook.org" "~/Dropbox/tasks/quals_prep.org" "~/Google Drive/hydrogel_paper_140830/notes.org" "~/Dropbox/tasks/todo.org")))
+    ("~/cloud/tasks/reading_list.org" "~/cloud/notes/notebook.org" "~/Dropbox/tasks/quals_prep.org" "~/Google Drive/hydrogel_paper_140830/notes.org" "~/Dropbox/tasks/todo.org")))
  '(org-babel-load-languages (quote ((sh . t) (python . t) (emacs-lisp . t))))
  '(org-capture-templates
    (quote
@@ -159,14 +159,14 @@ Added: %U"))))
 ;;Evil mode
 
 ;;evil-leader
-(require-package 'evil-leader)
+(require 'evil-leader)
 (setq evil-leader/in-all-states 1)
 (global-evil-leader-mode)
 (evil-leader/set-leader "<SPC>")
 (evil-leader/set-key "x" 'execute-extended-command)
 (evil-leader/set-key "ee" 'eval-buffer)
 
-(require-package 'evil)
+(require 'evil)
 (evil-mode 1)
 
 ;;acejump enable
@@ -237,7 +237,7 @@ Added: %U"))))
 ;;(eval-after-load "evil-commands"
  ;; (define-key evil-forward-char "<SPC>" nil))
 
-(require-package 'solarized-theme)
+(require 'solarized-theme)
 ;;These commands need to be called BEFORE load-theme
 ;; Don't change the font for some headings and titles
 (setq solarized-use-variable-pitch nil)
@@ -349,7 +349,7 @@ nil 0.5)))
 (setq exec-path (append exec-path '("/Users/links_world/src")))
 (setq load-path (append load-path '("/usr/local/bin")))
 
-(require-package 'openwith)
+(require 'openwith)
 (openwith-mode t)
 (setq openwith-associations '(("\\.pptx\\'" "powerpoint" (file))))
 ;; (setq openwith-associations '(("\\.JPG\\'" "open" (file))))
@@ -418,19 +418,19 @@ BEG and END default to the buffer boundaries."
 
 ;;mogrify -resize 80x80 -background white -gravity center -extent 80x80 -format jpg -quality 75 -path ../thumbs .
 
-(require-package 'nlinum)
+(require 'nlinum)
 ;;global line numbers
 ;; (global-linum-mode 1)
 (global-nlinum-mode 1)
 
 ;ido-mode
-(require-package `ido)
+(require `ido)
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode 1)
 
 ;;org-reveal
-(require-package 'ox-reveal)
+(require 'ox-reveal)
 
 (setq org-reveal-root "file:///Users/links_world/reveal.js")
 
@@ -445,15 +445,15 @@ BEG and END default to the buffer boundaries."
 (evil-leader/set-key "lc" 'ledger-mode-clean-buffer)
 
 ;;magit setup
-(require-package 'magit)
+(require 'magit)
 
 ;;org-ref setup
 (setq reftex-default-bibliography '("~/Google Drive/literature/library.bib"))
 
 
-(require-package 'org-ref)
+(require 'org-ref)
 
-(require-package 'helm-bibtex)
+(require 'helm-bibtex)
 
 
 ;; see org-ref for use of these variables
@@ -495,7 +495,7 @@ With prefix ARG non-nil, insert the result at the end of region."
 
 
 ;;smartparens
-(require-package 'smartparens)
+(require 'smartparens)
 
 (require 'smartparens-config)
 
