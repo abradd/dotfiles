@@ -3,8 +3,8 @@
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("org" . "http://orgmode.org/elpa/")
-                         ("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+                         ("melpa" . "https://melpa.org/packages/")
+                         ("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")))
 (package-initialize)
 
 (defun require-package (package)
@@ -194,12 +194,18 @@ Added: %U"))))
   (interactive)
   (find-file "~/cloud/tasks/todo.org")
   )
+(defun open-read()
+  "Open reading file"
+  (interactive)
+  (find-file "~/cloud/tasks/reading_list.org")
+  )
 
 ;ease of use shortcuts
 (evil-leader/set-key "on" 'open-notebook);
 (evil-leader/set-key "ol" 'open-ledger) ;
 (evil-leader/set-key "oe" 'open-emacs) ;
 (evil-leader/set-key "ot" 'open-todo) ;
+(evil-leader/set-key "or" 'open-read) ;
 
 ;;evil-nerd-commenter [[https://github.com/redguardtoo/evil-nerd-commenter][link]]
 (evil-leader/set-key
@@ -439,14 +445,17 @@ BEG and END default to the buffer boundaries."
 (evil-leader/set-key "lc" 'ledger-mode-clean-buffer)
 
 ;;magit setup
-(require 'magit)
+(require-package 'magit)
 
 ;;org-ref setup
 (setq reftex-default-bibliography '("~/Google Drive/literature/library.bib"))
 
-(require-package 'helm-bibtex)
 
 (require-package 'org-ref)
+
+(require-package 'helm-bibtex)
+
+
 ;; see org-ref for use of these variables
 (setq org-ref-bibliography-notes "~/Google Drive/literature/notes.org"
       org-ref-default-bibliography '("~/Google Drive/literature/library.bib")
