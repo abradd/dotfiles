@@ -76,6 +76,7 @@
    (quote
     (("EatingOutMonthlyBal" "ledger -f %(ledger-file) -b \"last month\" bal \"eating out\"")
      ("EatingOutMonthReg" "ledger -f %(ledger-file) -b \"last month\" reg \"Eating Out\"")
+     ("GroceriesMonthlyReg" "ledger -f %(ledger-file) -b \"last month\" reg \"Groceries\"")
      ("MonthlyReg" "ledger -f %(ledger-file) -b \"last month\" reg checking")
      ("balance" "ledger bal")
      ("accounts" "ledger Checking")
