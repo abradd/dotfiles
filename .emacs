@@ -91,14 +91,23 @@
  '(org-babel-load-languages (quote ((sh . t) (python . t) (emacs-lisp . t))))
  '(org-capture-templates
    (quote
-    (("t" "Notes" entry
+    (
+     ("t" "Notes" entry
       (file+datetree "~/cloud/notes/notebook.org" "Tasks")
       "* %^{Description} %^g %? 
 Added: %U")
+     
      ("e" "Emacs info" entry
       (file+datetree "~/cloud/notes/emacsfu.org" "Tasks")
       "* %^{Description} %^g %? 
-Added: %U"))))
+Added: %U")
+
+     ("o" "Other entry to place a note at an arbitrary date" entry
+      (file+datetree+prompt buffer-file-name "Tasks")
+      "* %^{Description} %^g %? 
+Added: %U")
+     
+     )))
  '(org-id-link-to-org-use-id t)
  '(org-modules
    (quote
