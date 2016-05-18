@@ -74,9 +74,10 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(ledger-reports
    (quote
-    (("EatingOutMonthlyBal" "ledger -f %(ledger-file) -b \"last month\" bal \"eating out\"")
+    (("EatingOutMonthlyBal" "ledger -f %(ledger-file) -b \"last month\" bal \"Eating out\"")
      ("EatingOutMonthReg" "ledger -f %(ledger-file) -b \"last month\" reg \"Eating Out\"")
-     ("GroceriesMonthlyReg" "ledger -f %(ledger-file) -b \"last month\" reg \"Groceries\"")
+     ("GroceriesLastMonthReg" "ledger -f %(ledger-file) -b \"last month\" reg \"Expenses:Groceries\"")
+     ("GroceriesMonthReg" "ledger -M -f %(ledger-file) reg \"Expenses:Groceries\"")
      ("MonthlyReg" "ledger -f %(ledger-file) -b \"last month\" reg checking")
      ("balance" "ledger bal")
      ("accounts" "ledger Checking")
@@ -86,7 +87,7 @@
      ("account" "ledger -f %(ledger-file) reg %(account)"))))
  '(org-agenda-files
    (quote
-    ("~/cloud/tasks/reading_list.org" "~/cloud/notes/notebook.org" "~/Dropbox/tasks/quals_prep.org" "~/Google Drive/hydrogel_paper_140830/notes.org" "~/Dropbox/tasks/todo.org")))
+    ("~/cloud/tasks/reading_list.org" "~/cloud/notes/notebook.org" "~/Dropbox/tasks/quals_prep.org" "~/Google Drive/hydrogel_paper_140830/hydrogel_notes.org" "~/Dropbox/tasks/todo.org")))
  '(org-babel-load-languages (quote ((sh . t) (python . t) (emacs-lisp . t))))
  '(org-capture-templates
    (quote
@@ -456,16 +457,23 @@ BEG and END default to the buffer boundaries."
 
 (require 'helm-bibtex)
 
-
 ;; see org-ref for use of these variables
-(setq org-ref-bibliography-notes "~/Google Drive/literature/notes.org"
-      org-ref-default-bibliography '("~/Google Drive/literature/library.bib")
+(setq org-ref-completion-library 'org-ref-helm-bibtex)
+
+(setq org-ref-default-bibliography '("~/Google Drive/literature/library.bib")
+;;      org-ref-notes-directory "~/Google Drive/literature/notes/"
+      org-ref-bibliography-notes "~/Google Drive/literature/notes/notes.org"
       org-ref-pdf-directory "~/Dropbox/test/"
       org-ref-get-pdf-filename-function 'org-ref-get-mendeley-filename)
 
+(setq bibtex-completion-bibliography "~/Google Drive/literature/library.bib"
+      bibtex-completion-notes-path "~/Google Drive/literature/notes")
+
+(setq bibtex-completion-pdf-field "File")
+
 ;;helm-bibtex
-(setq helm-bibtex-pdf-field "File")
-(setq helm-bibtex-bibliography "~/Google Drive/literature/library.bib")
+;; (setq helm-bibtex-pdf-field "File")
+;; (setq helm-bibtex-bibliography "~/Google Drive/literature/library.bib")
 ;(setq helm-bibtex-library-path "~/Dropbox/bibliography/bibtex-pdfs")
 
 ;; open pdf with system pdf viewer (works on mac)
@@ -526,4 +534,33 @@ With prefix ARG non-nil, insert the result at the end of region."
 ;;                           `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.75))))
 ;;                           `(org-document-title ((t (,@headline ,@variable-tuple :height 1.5 :underline nil))))))
 
+;;stolen from https://www.emacswiki.org/emacs/InteractivelyDoThings#toc29
 
+(defun ido-smart-select-text ()
+    "Select the current completed item.  Do NOT descend into directories."
+    (interactive)
+    (when (and (or (not ido-require-match)
+                   (if (memq ido-require-match
+                             '(confirm confirm-after-completion))
+                       (if (or (eq ido-cur-item 'dir)
+                               (eq last-command this-command))
+                           t
+                         (setq ido-show-confirm-message t)
+                         nil))
+                   (ido-existing-item-p))
+               (not ido-incomplete-regexp))
+      (when ido-current-directory
+        (setq ido-exit 'takeprompt)
+        (unless (and ido-text (= 0 (length ido-text)))
+          (let ((match (ido-name (car ido-matches))))
+            (throw 'ido
+                   (setq ido-selected
+                         (if match
+                             (replace-regexp-in-string "/\\'" "" match)
+                           ido-text)
+                         ido-text ido-selected
+                         ido-final-text ido-text)))))
+      (exit-minibuffer)))
+  
+  (eval-after-load "ido"
+    '(define-key ido-common-completion-map "\C-m" 'ido-smart-select-text))
