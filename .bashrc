@@ -15,7 +15,8 @@ alias bioeecad='ssh -Y abradd@bioeecad.ee.columbia.edu'
 alias bioeeserv='ssh -Y abradd@bioeeserv.ee.columbia.edu'
 alias mbioeenx='mosh -p 3995 abradd@bioeenx.ee.columbia.edu'
 alias fsbioeenx='sshfs abradd@bioeenx.ee.columbia.edu:"/u8/abradd/" ~/bioee/'
-alias fslabpc='sshfs abradd@bioeenx.ee.columbia.edu:"/u1/labpc/" ~/labpc'
+alias fslabpc='sshfs abradd@bioeenx.ee.columbia.edu:"/proj1/labpc/" ~/labpc'
+alias fstools3='sshfs abradd@bioeenx.ee.columbia.edu:"/tools3/" ~/tools3'
 
 alias scpf="scp abradd@linrack5.ee.columbia.edu"
 alias gcc5="/usr/local/Cellar/gcc5/5.1.0/bin/gcc-5"
