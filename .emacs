@@ -74,8 +74,11 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(ledger-reports
    (quote
-    (("EatingOutMonthlyBal" "ledger -f %(ledger-file) -b \"last month\" bal \"Eating out\"")
-     ("EatingOutMonthReg" "ledger -f %(ledger-file) -b \"last month\" reg \"Eating Out\"")
+    (("unclearedAll" "ledger -f /Users/links_world/cloud/tasks/fin-data.ledger reg \".*\" --uncleared")
+     ("unclearedChecking" "ledger -f /Users/links_world/cloud/tasks/fin-data.ledger reg Checking --uncleared")
+     ("EatingOutMonthAvgReg" "ledger -f %(ledger-file) -MA reg \"Expenses:Eating Out\"")
+     ("EatingOutMonthlyBal" "ledger -M -f %(ledger-file) bal \"Eating out\"")
+     ("EatingOutMonthReg" "ledger -M -f %(ledger-file) reg \"Expenses:Eating Out\"")
      ("GroceriesLastMonthReg" "ledger -f %(ledger-file) -b \"last month\" reg \"Expenses:Groceries\"")
      ("GroceriesMonthReg" "ledger -M -f %(ledger-file) reg \"Expenses:Groceries\"")
      ("MonthlyReg" "ledger -f %(ledger-file) -b \"last month\" reg checking")
@@ -91,23 +94,18 @@
  '(org-babel-load-languages (quote ((sh . t) (python . t) (emacs-lisp . t))))
  '(org-capture-templates
    (quote
-    (
-     ("t" "Notes" entry
+    (("t" "Notes" entry
       (file+datetree "~/cloud/notes/notebook.org" "Tasks")
       "* %^{Description} %^g %? 
 Added: %U")
-     
      ("e" "Emacs info" entry
       (file+datetree "~/cloud/notes/emacsfu.org" "Tasks")
       "* %^{Description} %^g %? 
 Added: %U")
-
      ("o" "Other entry to place a note at an arbitrary date" entry
       (file+datetree+prompt buffer-file-name "Tasks")
       "* %^{Description} %^g %? 
-Added: %U")
-     
-     )))
+Added: %U"))))
  '(org-id-link-to-org-use-id t)
  '(org-modules
    (quote
@@ -573,3 +571,8 @@ With prefix ARG non-nil, insert the result at the end of region."
   
   (eval-after-load "ido"
     '(define-key ido-common-completion-map "\C-m" 'ido-smart-select-text))
+
+;;setting file extensions for inline display
+(setq image-file-name-extensions
+   (quote
+    ("png" "jpeg" "jpg" "jp2" "gif" "tiff" "tif" "xbm" "xpm" "pbm" "pgm" "ppm" "pnm" "svg" "pdf" "bmp")))
