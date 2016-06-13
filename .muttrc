@@ -157,4 +157,7 @@ set pgp_auto_decode
 auto_view text/html
 alternative_order text/plain text/enriched text/html     # save html for last
 
+# Org-mode mutt interaction -----------------
+
+macro index \eR "|/usr/local/remember-mail\n"
 
