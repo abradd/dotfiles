@@ -21,6 +21,15 @@
 ;;Turn on git.el
 ;;(require 'git)
 
+;;Drive setup
+;; (cond
+;;  ((string-equal system-type "darwin") ; Mac OS X
+;;   (progn
+;;     (setq drive "Google Drive")))
+;;  ((string-equal system-type "gnu/linux") ; linux
+;;   (progn
+;;     (global-nlinum-mode 0))))
+
 ;;Log comletion time
 (setq org-log-done 'time)
 
@@ -442,7 +451,14 @@ BEG and END default to the buffer boundaries."
 (require 'nlinum)
 ;;global line numbers
 ;; (global-linum-mode 1)
-(global-nlinum-mode 1)
+
+(cond
+ ((string-equal system-type "darwin") ; Mac OS X
+  (progn
+    (global-nlinum-mode 1)))
+ ((string-equal system-type "gnu/linux") ; linux
+  (progn
+    (global-nlinum-mode 0))))
 
 ;ido-mode
 (require `ido)
@@ -712,3 +728,15 @@ Maildir, or by Message-ID."
 (setq org-mu4e-link-query-in-headers-mode nil)
 
 (evil-leader/set-key "mm" 'mu4e)
+
+;;detecting OS
+;; (cond
+;;  ((string-equal system-type "windows-nt") ; Microsoft Windows
+;;   (progn
+;;     (message "Microsoft Windows")))
+;;  ((string-equal system-type "darwin") ; Mac OS X
+;;   (progn
+;;     (message "Mac OS X")))
+;;  ((string-equal system-type "gnu/linux") ; linux
+;;   (progn
+;;     (message "Linux"))))
