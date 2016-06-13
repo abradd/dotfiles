@@ -105,7 +105,15 @@ Added: %U")
      ("o" "Other entry to place a note at an arbitrary date" entry
       (file+datetree+prompt buffer-file-name "Tasks")
       "* %^{Description} %^g %? 
-Added: %U"))))
+Added: %U")
+     ("m"
+       "Mail"
+       entry
+       (file+headline "~/cloud/tasks/todo.org" "Incoming")
+       "* TODO %^{Title}\n\n  Source: %u, %c\n\n  %i"
+       :empty-lines 1)
+       ;; ... more templates here ...
+     )))
  '(org-id-link-to-org-use-id t)
  '(org-modules
    (quote
@@ -357,6 +365,8 @@ nil 0.5)))
 (setq exec-path (append exec-path '("/usr/local/bin")))
 (setq exec-path (append exec-path '("/Users/links_world/src")))
 (setq load-path (append load-path '("/usr/local/bin")))
+(setq load-path (append load-path '("/Users/links_world/anaconda/bin")))
+(setq exec-path (append exec-path '("/Users/links_world/anaconda/bin")))
 
 (require 'openwith)
 (openwith-mode t)
@@ -370,6 +380,8 @@ nil 0.5)))
 
 ;;Altering the path variable so that latex can be found
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/texlive/2014/bin/x86_64-darwin/"))
+(setenv "PATH" (concat (getenv "PATH") ":/Users/links_world/anaconda/bin/"))
+(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 (setq exec-path (append exec-path '("/usr/local/texlive/2014/bin/x86_64-darwin/")))
 
 ;;Setting the size of inline latex formulae
@@ -576,3 +588,127 @@ With prefix ARG non-nil, insert the result at the end of region."
 (setq image-file-name-extensions
    (quote
     ("png" "jpeg" "jpg" "jp2" "gif" "tiff" "tif" "xbm" "xpm" "pbm" "pgm" "ppm" "pnm" "svg" "pdf" "bmp")))
+
+;; org-mode mutt integration
+
+(require 'org-capture)
+(require 'org-protocol)
+
+;;(setq org-default-notes-file "~/org/gtd.org")
+
+;; (setq org-capture-templates
+;;       (quote
+;;        (("m"
+;;          "Mail"
+;;          entry
+;;          (file+headline "~/org/gtd.org" "Incoming")
+;;          "* TODO %^{Title}\n\n  Source: %u, %c\n\n  %i"
+;;          :empty-lines 1)
+;;         ;; ... more templates here ...
+;;         )))
+;; ensure that emacsclient will show just the note to be edited when invoked
+;; from Mutt, and that it will shut down emacsclient once finished;
+;; fallback to legacy behavior when not invoked via org-protocol.
+
+(add-hook 'org-capture-mode-hook 'delete-other-windows)
+(setq my-org-protocol-flag nil)
+(defadvice org-capture-finalize (after delete-frame-at-end activate)
+  "Delete frame at remember finalization"
+  (progn (if my-org-protocol-flag (delete-frame))
+         (setq my-org-protocol-flag nil)))
+(defadvice org-capture-kill (after delete-frame-at-end activate)
+  "Delete frame at remember abort"
+  (progn (if my-org-protocol-flag (delete-frame))
+         (setq my-org-protocol-flag nil)))
+(defadvice org-protocol-capture (before set-org-protocol-flag activate)
+  (setq my-org-protocol-flag t))
+
+(defun open-mail-in-mutt (message)
+  "Open a mail message in Mutt, using an external terminal.
+
+Message can be specified either by a path pointing inside a
+Maildir, or by Message-ID."
+  (interactive "MPath or Message-ID: ")
+  (shell-command
+   (format "open - a "iTerm2" -e \"%s %s\""
+       (substitute-in-file-name "/usr/local/mutt-open") message)))
+
+;; add support for "mutt:ID" links
+(org-add-link-type "mutt" 'open-mail-in-mutt)
+
+
+;;mu4e setup
+
+(require 'mu4e)
+(require 'mu4e-contrib)
+(setq mu4e-maildir "~/.mail/adrian-adrian.bradd@gmail.com")
+(setq mu4e-drafts-folder "/Drafts")
+(setq mu4e-sent-folder   "/sent")
+;; don't save message to Sent Messages, Gmail/IMAP takes care of this
+(setq mu4e-sent-messages-behavior 'delete)
+;; allow for updating mail using 'U' in the main view:
+(setq mu4e-get-mail-command "offlineimap -q"
+      ;; mu4e-html2text-command "w3m -T test/html"
+      )
+
+;; shortcuts
+(setq mu4e-maildir-shortcuts
+    '( ("/INBOX"               . ?i)
+       ("/sent"   . ?s)))
+
+;; something about ourselves
+(setq
+   user-mail-address "adrian.bradd@gmail.com"
+   user-full-name  "Adrian Bradd"
+   mu4e-compose-signature
+    (concat
+      "Cheers,\n"
+      "Adrian\n"))
+
+;; show images
+(setq mu4e-show-images t)
+
+;; use imagemagick, if available
+(when (fboundp 'imagemagick-register-types)
+  (imagemagick-register-types))
+
+;; convert html emails properly
+;; Possible options:
+;;   - html2text -utf8 -width 72
+;;   - textutil -stdin -format html -convert txt -stdout
+;;   - html2markdown | grep -v '&nbsp_place_holder;' (Requires html2text pypi)
+;;   - w3m -dump -cols 80 -T text/html
+;;   - view in browser (provided below)
+;; (setq mu4e-html2text-command "textutil -stdin -format html -convert txt -stdout")
+;;(setq mu4e-html2text-command "w3m -dump -cols 80 -T text/html")
+(setq mu4e-html2text-command 'mu4e-shr2text)
+
+;; spell check
+(add-hook 'mu4e-compose-mode-hook
+        (defun my-do-compose-stuff ()
+           "My settings for message composition."
+           (set-fill-column 72)
+           (flyspell-mode)))
+
+;; add option to view html message in a browser
+;; `aV` in view to activate
+(add-to-list 'mu4e-view-actions
+  '("ViewInBrowser" . mu4e-action-view-in-browser) t)
+
+;; fetch mail every 10 mins
+(setq mu4e-update-interval 600)
+
+;;SMTP
+;; configuration for sending mail
+(setq message-send-mail-function 'smtpmail-send-it
+     smtpmail-stream-type 'starttls
+     smtpmail-default-smtp-server "smtp.gmail.com"
+     smtpmail-smtp-server "smtp.gmail.com"
+     smtpmail-smtp-service 587)
+
+;;store org-mode links to messages
+(require 'org-mu4e)
+;;store link to message if in header view, not to header query
+(setq org-mu4e-link-query-in-headers-mode nil)
+
+(evil-leader/set-key "mm" 'mu4e)
