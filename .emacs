@@ -115,13 +115,19 @@ Added: %U")
       (file+datetree+prompt buffer-file-name "Tasks")
       "* %^{Description} %^g %? 
 Added: %U")
-     ("m"
-       "Mail"
-       entry
-       (file+headline "~/cloud/tasks/todo.org" "Incoming")
-       "* TODO %^{Title}\n\n  Source: %u, %c\n\n  %i"
-       :empty-lines 1)
-       ;; ... more templates here ...
+     ("i" "Incoming entry that needs to be filed" entry
+      (file+headline "~/cloud/tasks/todo.org" "Incoming")
+      "* TODO %^{Description}  
+SCHEDULED %t
+
+%?")
+     ("m" "Mail" entry
+      (file+headline "~/cloud/tasks/todo.org" "Incoming")
+      "* TODO %^{Title}
+
+  Source: %u, %c
+
+  %i" :empty-lines 1)
      )))
  '(org-id-link-to-org-use-id t)
  '(org-modules
@@ -396,7 +402,6 @@ nil 0.5)))
 ;;Setting the size of inline latex formulae
 (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
 
-
 (global-set-key (kbd "C-c c") 'org-capture)
 (global-set-key (kbd "C-c l") 'org-store-link)
 
@@ -445,6 +450,18 @@ BEG and END default to the buffer boundaries."
         (overlay-put ov 'modification-hooks
                  (list 'org-display-inline-remove-overlay))
         (push ov org-inline-image-overlays))))))))))
+
+
+;; (global-set-key (kbd "C-c C-x C-v") 'my-org-toggle-inline-images) 
+
+(evil-leader/set-key "vv" 'my-org-display-inline-images)
+(evil-leader/set-key "vd" 'org-remove-inline-images)
+
+(defun my-org-display-inline-images ()
+  "Invoke org-toggle-inline-images only on visible window"
+  (interactive)
+  (org-display-inline-images nil nil (window-start) (window-end))
+  )
 
 ;;mogrify -resize 80x80 -background white -gravity center -extent 80x80 -format jpg -quality 75 -path ../thumbs .
 
@@ -663,18 +680,22 @@ Maildir, or by Message-ID."
 ;; don't save message to Sent Messages, Gmail/IMAP takes care of this
 (setq mu4e-sent-messages-behavior 'delete)
 ;; allow for updating mail using 'U' in the main view:
-(setq mu4e-get-mail-command "offlineimap -q"
+(setq mu4e-get-mail-command "offlineimap"
       ;; mu4e-html2text-command "w3m -T test/html"
       )
 
 ;; shortcuts
 (setq mu4e-maildir-shortcuts
-    '( ("/INBOX"               . ?i)
-       ("/sent"   . ?s)))
+   '(
+    ("/INBOX"               . ?i)
+    ("/sent"   . ?s)
+    ("/archive"   . ?a)
+    )
+)
 
 ;; something about ourselves
 (setq
-   user-mail-address "adrian.bradd@gmail.com"
+   user-mail-address "a.bradd@columbia.edu"
    user-full-name  "Adrian Bradd"
    mu4e-compose-signature
     (concat
