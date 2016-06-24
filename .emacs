@@ -761,3 +761,10 @@ Maildir, or by Message-ID."
 ;;  ((string-equal system-type "gnu/linux") ; linux
 ;;   (progn
 ;;     (message "Linux"))))
+
+(cond((string-equal system-type "gnu/linux") ; linux
+  (progn
+  (eval-after-load "org"
+   '(progn
+     (setcdr (assoc "\\.pdf\\'" org-file-apps) "evince %s")))
+  )))
