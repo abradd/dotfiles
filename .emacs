@@ -118,7 +118,7 @@ Added: %U")
      ("i" "Incoming entry that needs to be filed" entry
       (file+headline "~/cloud/tasks/todo.org" "Incoming")
       "* TODO %^{Description}  
-SCHEDULED %t
+SCHEDULED: %t
 
 %?")
      ("m" "Mail" entry
@@ -127,12 +127,12 @@ SCHEDULED %t
 
   Source: %u, %c
 
-  %i" :empty-lines 1)
-     )))
+  %i" :empty-lines 1))))
  '(org-id-link-to-org-use-id t)
  '(org-modules
    (quote
     (org-bbdb org-bibtex org-docview org-gnus org-habit org-info org-irc org-mhe org-rmail org-w3m)))
+ '(org-refile-targets (quote ((org-agenda-files :maxlevel . 3))))
  '(reftex-cite-punctuation (quote (", " " and " " et al")))
  '(show-paren-mode t))
 (custom-set-faces
@@ -699,8 +699,10 @@ Maildir, or by Message-ID."
    user-full-name  "Adrian Bradd"
    mu4e-compose-signature
     (concat
-      "Cheers,\n"
-      "Adrian\n"))
+     "Adrian\n\n"
+     "Bioelectronic Systems Lab,\n"
+     "Columbia University"
+))
 
 ;; show images
 (setq mu4e-show-images t)
