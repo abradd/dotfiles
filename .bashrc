@@ -15,6 +15,8 @@ alias mbioeenx='mosh -p 3995 abradd@bioeenx.ee.columbia.edu'
 alias fsbioeenx='sshfs abradd@bioeenx.ee.columbia.edu:"/u8/abradd/" ~/bioee/'
 alias fslabpc='sshfs abradd@bioeenx.ee.columbia.edu:"/proj1/labpc/" ~/labpc'
 alias fstools3='sshfs abradd@bioeenx.ee.columbia.edu:"/tools3/" ~/tools3'
+alias winadmin="/usr/local/Cellar/freerdp/1.0.2_1/bin/xfreerdp -u administrator -z -g 1600x960 -a 16 -x b winrack1.ee.columbia.edu"
+alias winadrian="/usr/local/Cellar/freerdp/1.0.2_1/bin/xfreerdp -u abradd -z -g 1600x960 -a 16 -x b winrack1.ee.columbia.edu"
 
 set -o vi
 
